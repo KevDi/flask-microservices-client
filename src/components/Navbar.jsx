@@ -1,6 +1,6 @@
 import React from 'react';
-import { Navbar, Nav, NavItem } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap';
 
 const NavBar = (props) => (
     <Navbar inverse collapseOnSelect>
@@ -18,20 +18,28 @@ const NavBar = (props) => (
                 <LinkContainer to="/about">
                     <NavItem eventKey={2}>About</NavItem>
                 </LinkContainer>
+                {props.isAuthenticated &&
                 <LinkContainer to="/status">
                     <NavItem eventKey={3}>Status</NavItem>
                 </LinkContainer>
+                }
             </Nav>
             <Nav pullRight>
+                {!props.isAuthenticated &&
                 <LinkContainer to="/register">
                     <NavItem eventKey={1}>Register</NavItem>
                 </LinkContainer>
+                }
+                {!props.isAuthenticated &&
                 <LinkContainer to="/login">
                     <NavItem eventKey={2}>Login</NavItem>
                 </LinkContainer>
+                }
+                {props.isAuthenticated &&
                 <LinkContainer to="/logout">
                     <NavItem eventKey={3}>Logout</NavItem>
                 </LinkContainer>
+                }
             </Nav>
         </Navbar.Collapse>
     </Navbar>
